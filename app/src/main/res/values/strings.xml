@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">LapitChat</string>
+    <string name="need_a_new_account">NEED A NEW ACCOUNT ?</string>
+    <string name="email">Email</string>
+    <string name="display_name">Display Name</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="log_out">Log out</string>
+    <string name="create_a_new_account">Create a new Account</string>
+    <string name="login">Login</string>
+    <string name="login_to_your_account">Login to your Account</string>
+    <string name="already_have_a_account">Already have Account</string>
+    <string name="your_email">Your email</string>
+    <string name="auth_error">Authentication failed. Please check the form and try again</string>
+    <string name="reg_user">Registering User</string>
+    <string name="please_wait">Please wait while we create your account !</string>
+    <string name="logging">Logging in</string>
+    <string name="wait_for_check">Please wait while we check your credentials.</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="all_users">All Users</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_status">Change Status</string>
+    <string name="change_image">Change Image</string>
+    <string name="default_name">I am using the LapitChat. Join to me.</string>
+    <string name="send_text_request">SEND TEXT REQUEST</string>
+    <string name="loading">Loading...</string>
+</resources>
