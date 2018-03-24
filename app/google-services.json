@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "619062693438-tdc98js7gfiuka24g2u62j4l27p9n053.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softworks.prom.gaidar.lapitchat",
+            "certificate_hash": "0fbc5627c1a0d5feb83981dc5fad5f71cbd57bc7"
+          }
+        },
+        {
           "client_id": "619062693438-8dhs5d2uvddm5ag946dbngi5o8qqtnud.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

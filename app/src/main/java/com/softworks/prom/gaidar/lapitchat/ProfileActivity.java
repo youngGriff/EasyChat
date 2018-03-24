@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,7 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -49,7 +50,6 @@ public class ProfileActivity extends AppCompatActivity {
     public static Intent createIntent(Context mContext, String uid) {
         Intent intent = new Intent(mContext, ProfileActivity.class);
         intent.putExtra("user_id", uid);
-
         return intent;
     }
 
@@ -99,8 +99,13 @@ public class ProfileActivity extends AppCompatActivity {
 
                 mProfileName.setText(display_name);
                 mProfileStatus.setText(status);
-
-                Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.default_image).into(mProfileImage);
+                if (!image.equals("default"))
+                    Glide.with(ProfileActivity.this.getApplicationContext())
+                            .load(image)
+                            .apply(new RequestOptions()
+                                    .error(R.drawable.default_image)
+                                    .placeholder(R.drawable.default_image))
+                            .into(mProfileImage);
 
                 if (mCurrent_user.getUid().equals(user_id)) {
 

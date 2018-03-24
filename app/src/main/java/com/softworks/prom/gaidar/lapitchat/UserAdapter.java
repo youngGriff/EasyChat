@@ -6,9 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -49,16 +50,20 @@ public class UserAdapter extends FirebaseRecyclerAdapter<User, UserAdapter.UserH
         public UserHolder(View itemView) {
             super(itemView);
             rootView = itemView;
-            mProfile = itemView.findViewById(R.id.user_image);
-            mName = itemView.findViewById(R.id.user_name);
-            mStatus = itemView.findViewById(R.id.user_status);
+            mProfile = itemView.findViewById(R.id.user_single_image);
+            mName = itemView.findViewById(R.id.user_single_name);
+            mStatus = itemView.findViewById(R.id.user_single_status);
             mProfile.setImageResource(R.drawable.default_image);
         }
 
         void bind(Context context, User user) {
             mName.setText(user.getName());
             mStatus.setText(user.getStatus());
-            Picasso.with(context).load(user.getImage()).into(mProfile);
+            Glide.with(context.getApplicationContext())
+                    .load(user.getImage()).apply(new RequestOptions()
+                    .placeholder(R.drawable.default_image))
+                    .into(mProfile);
+            //  Picasso.with(context).load(user.getImage()).into(mProfile);
         }
 
         void setOnClickListener(View.OnClickListener listener) {

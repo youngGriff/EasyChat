@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_image"
+        android:id="@+id/user_single_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        tools:src="@drawable/default_image" />
+        android:src="@drawable/default_image" />
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/user_single_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/user_image"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="3dp"
-        android:layout_toEndOf="@+id/user_image"
+        android:layout_alignTop="@+id/user_single_image"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/user_single_image"
+        android:text="Display Name"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
-        tools:text="Марк Аврелій" />
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/user_status"
+        android:id="@+id/user_single_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/user_name"
-        android:layout_below="@+id/user_name"
+        android:layout_alignStart="@+id/user_single_name"
+        android:layout_below="@+id/user_single_name"
         android:layout_marginTop="10dp"
-        tools:text="Хліба і видовищ" />
+        android:text="User default Status" />
+
+    <ImageView
+        android:id="@+id/user_single_online_icon"
+        android:layout_width="8dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/user_single_name"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/user_single_name"
+        android:visibility="invisible"
+        app:srcCompat="@mipmap/online_icon" />
+
+    <ImageView
+        android:id="@+id/image_message"
+        android:layout_width="64dp"
+        android:visibility="gone"
+
+        android:layout_centerVertical="true"
+        android:layout_marginRight="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="64dp" />
 
 </RelativeLayout>
