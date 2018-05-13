@@ -15,6 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -76,7 +79,9 @@ class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHold
         });
 
         if (message_type.equals("text")) {
-
+            Date date = new Date(c.getTime());
+            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss  dd.MM");
+            viewHolder.tvTime.setText(dateFormat.format(date));
             viewHolder.messageText.setText(c.getMessage());
             viewHolder.messageImage.setVisibility(View.INVISIBLE);
 
@@ -104,6 +109,7 @@ class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHold
         public CircleImageView profileImage;
         public TextView displayName;
         public ImageView messageImage;
+        public TextView tvTime;
 
         public MessageViewHolder(View view) {
             super(view);
@@ -112,6 +118,7 @@ class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHold
             profileImage = (CircleImageView) view.findViewById(R.id.message_profile_layout);
             displayName = (TextView) view.findViewById(R.id.name_text_layout);
             messageImage = (ImageView) view.findViewById(R.id.message_image_layout);
+            tvTime = view.findViewById(R.id.time_text_layout);
 
         }
     }

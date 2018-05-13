@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -59,6 +61,8 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         final String user_id = getIntent().getStringExtra("user_id");
+        final Toolbar menu = findViewById(R.id.menu);
+        menu.inflateMenu(R.menu.send_message_menu);
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -93,12 +97,22 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                String display_name = dataSnapshot.child("name").getValue().toString();
+                final String display_name = dataSnapshot.child("name").getValue().toString();
                 String status = dataSnapshot.child("status").getValue().toString();
                 String image = dataSnapshot.child("image").getValue().toString();
-
+                findFriendCount(user_id);
                 mProfileName.setText(display_name);
                 mProfileStatus.setText(status);
+                menu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent chatIntent = new Intent(ProfileActivity.this, ChatActivity.class);
+                        chatIntent.putExtra("user_id", user_id);
+                        chatIntent.putExtra("user_name", display_name);
+                        startActivity(chatIntent);
+                        return false;
+                    }
+                });
                 if (!image.equals("default"))
                     Glide.with(ProfileActivity.this.getApplicationContext())
                             .load(image)
@@ -111,7 +125,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     mDeclineBtn.setEnabled(false);
                     mDeclineBtn.setVisibility(View.INVISIBLE);
-
+                    menu.setVisibility(View.GONE);
                     mProfileSendReqBtn.setEnabled(false);
                     mProfileSendReqBtn.setVisibility(View.INVISIBLE);
 
@@ -363,5 +377,24 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void findFriendCount(String user_id) {
+        FirebaseDatabase.getInstance().getReference().child("Friends").child(user_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long count = dataSnapshot.getChildrenCount();
+                mProfileFriendsCount.setText("Total Friends: " + count);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void back(View view) {
+        finish();
     }
 }

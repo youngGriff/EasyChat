@@ -38,7 +38,6 @@ import id.zelory.compressor.Compressor;
 
 public class SettingsActivity extends AppCompatActivity {
     public static final String STATUS_EXTRA = "status";
-    private static final int GALLERY_PICK = 23;
     private DatabaseReference mDatabase;
     private FirebaseUser currentUser;
     private StorageReference mImageStorage;
@@ -64,12 +63,6 @@ public class SettingsActivity extends AppCompatActivity {
         mChangeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-               /* Intent galleryIntent = new Intent();
-                galleryIntent.setType("image/*");
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(galleryIntent, "Select image"), GALLERY_PICK);
-                */
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .start(SettingsActivity.this);
@@ -96,8 +89,6 @@ public class SettingsActivity extends AppCompatActivity {
                 String name = dataSnapshot.child("name").getValue().toString();
                 final String image = dataSnapshot.child("image").getValue().toString();
                 String status = dataSnapshot.child("status").getValue().toString();
-                String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
-
                 if (!image.equals("default"))
                     Glide.with(SettingsActivity.this.getApplicationContext()).
                             load(image).apply(new RequestOptions()
@@ -129,7 +120,6 @@ public class SettingsActivity extends AppCompatActivity {
                     .setMaxHeight(400)
                     .setMaxWidth(400)
                     .setQuality(75)
-
                     .compressToBitmap(thumbPath);
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();

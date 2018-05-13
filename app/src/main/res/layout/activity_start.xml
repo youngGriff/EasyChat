@@ -12,7 +12,7 @@
         android:id="@+id/textView"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Welcome to the LapitChat"
+        android:text="Welcome to the EasyChat"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="24sp"

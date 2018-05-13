@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LapitChat</string>
+    <string name="app_name">EasyChat</string>
     <string name="need_a_new_account">NEED A NEW ACCOUNT ?</string>
     <string name="email">Email</string>
     <string name="display_name">Display Name</string>
@@ -21,7 +21,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="change_status">Change Status</string>
     <string name="change_image">Change Image</string>
-    <string name="default_name">I am using the LapitChat. Join to me.</string>
+    <string name="default_name">I am using the EasyChat. Join to me.</string>
     <string name="send_text_request">SEND TEXT REQUEST</string>
     <string name="loading">Loading...</string>
 </resources>

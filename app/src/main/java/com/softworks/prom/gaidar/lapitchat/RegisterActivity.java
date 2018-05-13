@@ -81,23 +81,24 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             mRegProgr.dismiss();
-
                             FirebaseUser currentUser = mAuth.getCurrentUser();
                             String uid = currentUser.getUid();
+                            currentUser.sendEmailVerification();
                             mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
                             String device_token = FirebaseInstanceId.getInstance().getToken();
                             database = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
                             HashMap<String, String> userMap = new HashMap<>();
                             userMap.put("name", displayName);
-                            userMap.put("status", "I am using the LapitChat. Join to me.");
+                            userMap.put("status", "I am using the EasyChat. Join to me.");
                             userMap.put("image", "default");
                             userMap.put("thumb_image", "default");
                             userMap.put("device_token", device_token);
+                            Toast.makeText(RegisterActivity.this, "Check email address", Toast.LENGTH_SHORT).show();
 
                             database.setValue(userMap);
 
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, StartActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();

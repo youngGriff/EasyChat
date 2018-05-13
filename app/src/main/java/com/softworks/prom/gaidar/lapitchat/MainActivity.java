@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         pager = findViewById(R.id.main_view_pager);
         tabLayout = findViewById(R.id.tab_layout);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Lapit Chat");
+        getSupportActionBar().setTitle("EasyChat");
 
         mAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(mAdapter);
@@ -65,12 +65,17 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
             sendToStart();
+        } else {
+            if (!user.isEmailVerified()) {
+                sendToStart();
+            }
         }
 
     }
 
     private void sendToStart() {
         Intent intent = new Intent(this, StartActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
